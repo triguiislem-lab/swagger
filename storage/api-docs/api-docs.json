@@ -1,0 +1,302 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Jihene-Line API",
+        "description": "Documentation API pour Jihene-Line",
+        "contact": {
+            "email": "yssfmrbt@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api/v1",
+            "description": "Serveur API"
+        },
+        {
+            "url": "http://localhost:8000"
+        }
+    ],
+    "paths": {
+        "/api/v1": {},
+        "/api/marques": {
+            "get": {
+                "tags": [
+                    "Marques"
+                ],
+                "summary": "Récupérer la liste des marques",
+                "description": "Display a listing of the resource.",
+                "operationId": "03787a04650457a20881200057ea409e",
+                "responses": {
+                    "200": {
+                        "description": "Liste des marques récupérée avec succès"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Marques"
+                ],
+                "summary": "Créer une nouvelle marque",
+                "description": "Store a newly created resource in storage.",
+                "operationId": "e53637c4ff9307b1212bf074b16226f2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nom",
+                                    "description",
+                                    "logo"
+                                ],
+                                "properties": {
+                                    "nom": {
+                                        "type": "string",
+                                        "example": "Nike"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Marque de vêtements sportifs"
+                                    },
+                                    "logo": {
+                                        "type": "string",
+                                        "example": "nike_logo"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Marque créée avec succès"
+                    },
+                    "422": {
+                        "description": "Erreur de validation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/marques/create": {
+            "get": {
+                "tags": [
+                    "Marques"
+                ],
+                "summary": "Obtenir les données pour créer une marque",
+                "description": "Show the form for creating a new resource.",
+                "operationId": "7cba67fd68021a25adf768fc79cf9f44",
+                "responses": {
+                    "200": {
+                        "description": "Liste des marques retournée"
+                    }
+                }
+            }
+        },
+        "/api/marques/{id}": {
+            "get": {
+                "tags": [
+                    "Marques"
+                ],
+                "summary": "Afficher une marque spécifique",
+                "description": "Display the specified resource.",
+                "operationId": "5f11e45542cd15be491207048afb4e89",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la marque",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Marque trouvée"
+                    },
+                    "404": {
+                        "description": "Marque non trouvée"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Marques"
+                ],
+                "summary": "Mettre à jour une marque",
+                "description": "Update the specified resource in storage.",
+                "operationId": "924d4d7c9c95fb01e67c14b250edaab8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la marque",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nom": {
+                                        "type": "string",
+                                        "example": "Nike Updated"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Description mise à jour"
+                                    },
+                                    "logo": {
+                                        "type": "string",
+                                        "example": "nike_logo_new"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Marque mise à jour avec succès"
+                    },
+                    "404": {
+                        "description": "Marque non trouvée"
+                    },
+                    "422": {
+                        "description": "Erreur de validation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Marques"
+                ],
+                "summary": "Supprimer une marque",
+                "description": "Remove the specified resource from storage.",
+                "operationId": "dc28b5d662995167a39c7d9ec4372b57",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la marque",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Marque supprimée avec succès"
+                    },
+                    "404": {
+                        "description": "Marque non trouvée"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/marques/{id}/edit": {
+            "get": {
+                "tags": [
+                    "Marques"
+                ],
+                "summary": "Formulaire d'édition d'une marque",
+                "description": "Show the form for editing the specified resource.",
+                "operationId": "15fed7f0e3519cd0c5c7a2fb5bf201ef",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la marque",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Formulaire d'édition"
+                    },
+                    "404": {
+                        "description": "Marque non trouvée"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Marque": {
+                "required": [
+                    "nom",
+                    "description",
+                    "logo"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "nom": {
+                        "type": "string",
+                        "example": "Nike"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Marque de vêtements sportifs"
+                    },
+                    "logo": {
+                        "type": "string",
+                        "example": "nike_logo"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Marques",
+            "description": "Marques"
+        }
+    ]
+}
